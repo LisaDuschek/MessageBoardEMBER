@@ -1,10 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-model() {
-    return this.store.findAll('question');
-
- },
+  model() {
+    return Ember.RSVP.hash({
+     questions: this.store.findAll('question'),
+     answers: this.store.findAll('answer')
+   });
+},
 
  actions: {
      save(params) {
@@ -12,16 +14,24 @@ model() {
       newQuestion.save();
       this.transitionTo('index');
     },
+
     update(question, params) {
         Object.keys(params).forEach(function(key) {
            if(params[key]!==undefined) {
-             rental.set(key,params[key]);
+             question.set(key, params[key]);
            }
-         });
-         
-    destroyQuestion(question) {
-      question.destroyRecord();
+       });
+       question.save();
       this.transitionTo('index');
-    }
-}
+     },
+
+    destroyQuestion(question) {
+        question.get('answers').forEach(function(answer){
+         answer.destroyRecord();
+  });
+       question.destroyRecord();
+       this.transitionTo('index');
+   }
+ }
+
 });

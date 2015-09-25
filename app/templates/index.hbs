@@ -1,13 +1,25 @@
 {{outlet}}
 
-<h2>Message Board</h2>
+
 
 <p>Submit your message and see what completely u helpful answers you receive</p>
 
+
+<h2> All the questions: </h2>
 <ul>
-  {{#each model as |question|}}
+  {{#each model.questions as |question|}}
     {{question-tile question=question update="update" destroyQuestion="destroyQuestion"}}
   {{/each}}
 </ul>
 
 {{new-question save="save"}}
+
+<!-- <h2> Answers </h2>
+
+<ul>
+  {{#each model.answers as |answer|}}
+    <li>{{#link-to 'answer' answer.id}}{{answer.content}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+
+{{new-answer saveAnswer="saveAnswer"}} -->
