@@ -1,3 +1,7 @@
 {{yield}}
 
-<li>{{question.question}} by {{question.author}} <br> {{question.notes}} <button {{action 'delete' question}}>Delete</button></li>
+<li>{{question.question}} by {{question.author}} <br> {{question.notes}} <button {{action 'delete' question}}>Delete</button> {{update-rental rental=rental update="update"}}</li>
+
+
+
+{{#link-to 'index'}}Back to Homepage{{/link-to}}

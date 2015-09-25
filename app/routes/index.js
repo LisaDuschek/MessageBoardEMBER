@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
 model() {
-    return this.store.findAll('rental');
+    return this.store.findAll('question');
 
  },
 
@@ -12,7 +12,13 @@ model() {
       newQuestion.save();
       this.transitionTo('index');
     },
-
+    update(question, params) {
+        Object.keys(params).forEach(function(key) {
+           if(params[key]!==undefined) {
+             rental.set(key,params[key]);
+           }
+         });
+         
     destroyQuestion(question) {
       question.destroyRecord();
       this.transitionTo('index');
