@@ -1,0 +1,13 @@
+{{outlet}}
+
+<h2>Message Board</h2>
+
+<p>Submit your message and see what completely u helpful answers you receive</p>
+
+<ul>
+  {{#each model as |question|}}
+    {{question-tile question=question destroyQuestion="destroyQuestion"}}
+  {{/each}}
+</ul>
+
+{{new-question save="save"}}
